@@ -47,7 +47,7 @@ Parameter Configuration:
 You can run a model through:
 
 ```powershell
-python main.py --model_name metaheac --num_expert 8 --data_name AliExpress_NL
+python main.py --model_name metaheac --num_expert 8 --dataset_name AliExpress_NL
 ```
 
 ## Results
@@ -279,8 +279,13 @@ python main.py --model_name metaheac --num_expert 8 --data_name AliExpress_NL
 │   ├── singletask.py
 │   └── sharedbottom.py
 └── data
-    ├── process.py         # Preprocess the original data
-    ├── aliexpress_NL      # AliExpressDataset from Netherlands
+    ├── preprocess.py         # Preprocess the original data
+    ├── AliExpress_NL         # AliExpressDataset from Netherlands
+    	├── train.csv
+		└── test.py
+    ├── AliExpress_ES         # AliExpressDataset from Spain
+    ├── AliExpress_FR         # AliExpressDataset from French
+    └── AliExpress_US         # AliExpressDataset from America
 ```
 
 
