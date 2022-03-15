@@ -16,7 +16,7 @@ from models.metaheac import MetaHeacModel
 
 
 def get_dataset(name, path):
-    if 'aliexpress' in name:
+    if 'AliExpress' in name:
         return AliExpressDataset(path)
     else:
         raise ValueError('unknown dataset name: ' + name)
