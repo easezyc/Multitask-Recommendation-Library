@@ -51,7 +51,7 @@ python main.py --model_name metaheac --num_expert 8 --dataset_name AliExpress_NL
 ```
 
 ## Results
-> For fair comparisons, the learning rate is 0.001, the dimension of embeddings is 128, and mini-batch size is 2048 equally for all models. asets. We report the mean AUC and Logloss over five random runs. Best results are in boldface.
+> For fair comparisons, the learning rate is 0.001, the dimension of embeddings is 128, and mini-batch size is 2048 equally for all models. We report the mean AUC and Logloss over five random runs. Best results are in boldface.
 
 <table>
 	<head >
