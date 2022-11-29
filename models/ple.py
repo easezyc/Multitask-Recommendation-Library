@@ -26,15 +26,18 @@ class PLEModel(torch.nn.Module):
         self.share_gates=[0] * self.layers_num
         for i in range(self.layers_num):
             input_dim = self.embed_output_dim if 0 == i else bottom_mlp_dims[i - 1]
-            self.share_experts[i] = torch.nn.ModuleList([MultiLayerPerceptron(input_dim, [bottom_mlp_dims[i]], dropout, output_layer=False) for k in range(self.specific_expert_num)])
+            self.share_experts[i] = torch.nn.ModuleList([MultiLayerPerceptron(input_dim, [bottom_mlp_dims[i]], dropout, output_layer=False) for k in range(self.shared_expert_num)])
             self.share_gates[i]=torch.nn.Sequential(torch.nn.Linear(input_dim, shared_expert_num + task_num * specific_expert_num), torch.nn.Softmax(dim=1))
             for j in range(task_num):
                 self.task_experts[i][j]=torch.nn.ModuleList([MultiLayerPerceptron(input_dim, [bottom_mlp_dims[i]], dropout, output_layer=False) for k in range(self.specific_expert_num)])
                 self.task_gates[i][j]=torch.nn.Sequential(torch.nn.Linear(input_dim, shared_expert_num + specific_expert_num), torch.nn.Softmax(dim=1))
             self.task_experts[i]=torch.nn.ModuleList(self.task_experts[i])
 
-        self.task_experts=torch.nn.ModuleList(self.task_experts)
-        self.share_experts=torch.nn.ModuleList(self.share_experts)
+        self.task_experts = torch.nn.ModuleList(self.task_experts)
+        self.task_gates = torch.nn.ModuleList(self.task_gates)
+        self.share_experts = torch.nn.ModuleList(self.share_experts)
+        self.share_gates = torch.nn.ModuleList(self.share_gates)
+
 
         self.tower = torch.nn.ModuleList([MultiLayerPerceptron(bottom_mlp_dims[-1], tower_mlp_dims, dropout) for i in range(task_num)])
 
