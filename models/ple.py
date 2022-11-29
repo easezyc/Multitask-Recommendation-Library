@@ -33,8 +33,11 @@ class PLEModel(torch.nn.Module):
                 self.task_gates[i][j]=torch.nn.Sequential(torch.nn.Linear(input_dim, shared_expert_num + specific_expert_num), torch.nn.Softmax(dim=1))
             self.task_experts[i]=torch.nn.ModuleList(self.task_experts[i])
 
-        self.task_experts=torch.nn.ModuleList(self.task_experts)
-        self.share_experts=torch.nn.ModuleList(self.share_experts)
+        self.task_experts = torch.nn.ModuleList(self.task_experts)
+        self.task_gates = torch.nn.ModuleList(self.task_gates)
+        self.share_experts = torch.nn.ModuleList(self.share_experts)
+        self.share_gates = torch.nn.ModuleList(self.share_gates)
+
 
         self.tower = torch.nn.ModuleList([MultiLayerPerceptron(bottom_mlp_dims[-1], tower_mlp_dims, dropout) for i in range(task_num)])
 
