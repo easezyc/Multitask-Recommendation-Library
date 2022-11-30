@@ -32,6 +32,7 @@ class PLEModel(torch.nn.Module):
                 self.task_experts[i][j]=torch.nn.ModuleList([MultiLayerPerceptron(input_dim, [bottom_mlp_dims[i]], dropout, output_layer=False) for k in range(self.specific_expert_num)])
                 self.task_gates[i][j]=torch.nn.Sequential(torch.nn.Linear(input_dim, shared_expert_num + specific_expert_num), torch.nn.Softmax(dim=1))
             self.task_experts[i]=torch.nn.ModuleList(self.task_experts[i])
+            self.task_gates[i] = torch.nn.ModuleList(self.task_gates[i])
 
         self.task_experts = torch.nn.ModuleList(self.task_experts)
         self.task_gates = torch.nn.ModuleList(self.task_gates)
