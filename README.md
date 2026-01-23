@@ -293,6 +293,7 @@ python main.py --model_name metaheac --num_expert 8 --dataset_name AliExpress_NL
 ## Contact
 If you have any problem about this library, please create an issue or send us an Email at:
 * zhuyc0204@gmail.com
+* zhuangfuzhen@buaa.edu.cn
 
 
 ## Reference
